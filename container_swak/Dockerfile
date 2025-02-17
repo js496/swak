@@ -1,13 +1,15 @@
-FROM python:3.10-slim
-
-WORKDIR /usr/src/app
-
-COPY . .
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-EXPOSE 5555
-
-ENV GRADIO_SERVER_NAME="0.0.0.0"
-
-CMD ["python", "swak.py"]
+services:
+  swak:
+    build:
+      context: ./container_swak
+    ports:
+      - "5555:5555"
+    container_name: container_swak
+    environment:
+      GRADIO_SERVER_NAME: "0.0.0.0"
+      CONTAINER_PORT: "5555"
+      HOST_PORT: "5555"
+    volumes:
+      - ./container_swak:/usr/src/app
+      - /home/cloud/.cache/huggingface:/root/.cache/huggingface
+    restart: unless-stopped
