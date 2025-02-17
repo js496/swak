@@ -10,6 +10,6 @@ services:
       CONTAINER_PORT: "5555"
       HOST_PORT: "5555"
     volumes:
-      - ./frontend:/usr/src/app
+      - ./container_swak:/usr/src/app
       - /home/cloud/.cache/huggingface:/root/.cache/huggingface
     restart: unless-stopped
