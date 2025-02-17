@@ -1,13 +1,14 @@
 services:
+  swak:
     build:
       context: ./frontend
     ports:
       - "5555:5555"
     container_name: container_swak
     environment:
-      - GRADIO_SERVER_NAME=0.0.0.0
-      - CONTAINER_PORT=5555
-      - HOST_PORT=5555
+      GRADIO_SERVER_NAME: "0.0.0.0"
+      CONTAINER_PORT: "5555"
+      HOST_PORT: "5555"
     volumes:
       - ./frontend:/usr/src/app
       - /home/cloud/.cache/huggingface:/root/.cache/huggingface
